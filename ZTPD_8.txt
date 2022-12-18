@@ -1,0 +1,8 @@
+// Zmiana kolejnosci nastapila z uwagi na fakt, ze do okna wpadaja wszystkie danek, nawet te których nie wyświetlimy
+
+select istream data, kursOtwarcia - max(kursOtwarcia), spolka
+from KursAkcji(spolka = 'Oracle').win:length(5)
+
+select istream data, 2 * kursOtwarcia - sum(kursOtwarcia) as roznica, spolka
+from KursAkcji(spolka = 'Oracle').win:length(2)
+having sum(kursOtwarcia) - kursOtwarcia < kursOtwarcia and sum(kursOtwarcia) != kursOtwarcia
